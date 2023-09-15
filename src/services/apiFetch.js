@@ -1,6 +1,6 @@
 import { BASE_URI, TOKEN_KEY } from "../config";
 
-async function apiFetch(enpoint, { method, headers, body }) {
+async function apiFetch(enpoint, { method, headers, body } = {}) {
   const token = localStorage.getItem(TOKEN_KEY);
 
   if(token) {
