@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 import { Container, Logo, Section, toggleStyles } from "./styles";
-import { HiMenuAlt2 } from "react-icons/hi";
+import { HiMenuAlt2, HiOutlineLogout } from "react-icons/hi";
 import { COLORS } from "../../../styles/colors";
 import { IoClose } from "react-icons/io5";
 import NavItem from "./navItem";
@@ -11,12 +11,17 @@ import { BsFillPeopleFill, BsFillCalendarFill } from "react-icons/bs";
 import { AiFillHome } from "react-icons/ai";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/auth";
+import { CgProfile } from "react-icons/cg";
 
 function Client({ setModal }) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [dropdownMenu, setDropDownMenu] = useState(false);
+  const [dropdownProfile, setDropDownProfile] = useState(false);
   const navigate = useNavigate();
+  const { user } = useAuth();
 
-  const toggle = () => setIsOpen(prevState => !prevState);
+  const handleMenu = () => setDropDownMenu(!dropdownMenu);
+  const handleProfile = () => setDropDownProfile(!dropdownProfile);
 
   const handleModal = (action) => {
     setModal(modal => (
@@ -31,15 +36,15 @@ function Client({ setModal }) {
     <Container>
       {/* menu */}
       <Dropdown
-        isOpen={isOpen}
-        toggle={toggle}
+        isOpen={dropdownMenu}
+        toggle={handleMenu}
         direction="down"
       >
         <DropdownToggle
           css={toggleStyles}
         >
           {
-            isOpen
+            dropdownMenu
             ? <IoClose 
                 color={COLORS.black}
                 size={20}
@@ -64,18 +69,53 @@ function Client({ setModal }) {
       />
       {/* buttons */}
       <Section>
-        <Button 
-          Icon={BsFillPeopleFill}
-          onClick={() => handleModal("register")}
-        >
-          Regístrate
-        </Button>
-        <Button
-          filled
-          onClick={() => handleModal("login")}
-        > 
-          Inicia Sesión
-        </Button>
+        {
+          user
+          ? <Dropdown
+              direction="down"
+              isOpen={dropdownProfile}
+              toggle={handleProfile}
+            >
+              <DropdownToggle
+                style={{padding: 0, border: "none", backgroundColor: "transparent"}}
+              >
+                <Button
+                  filled
+                  Icon={BsFillPeopleFill}
+                >
+                  { user.name }
+                </Button>
+              </DropdownToggle>
+              <DropdownMenu 
+                dark
+                end
+                style={{marginTop: "0.5rem"}}
+              >
+                <NavItem Icon={CgProfile} to="/perfil"> Perfil </NavItem>
+                <NavItem 
+                  Icon={HiOutlineLogout}
+                  to="/" 
+                  isToLogout
+                > 
+                  Cerrar sesión
+                </NavItem>
+              </DropdownMenu>
+            </Dropdown> 
+          : <>
+              <Button 
+                Icon={BsFillPeopleFill}
+                onClick={() => handleModal("register")}
+              >
+                Regístrate
+              </Button>
+              <Button
+                filled
+                onClick={() => handleModal("login")}
+              > 
+                Inicia Sesión
+              </Button>
+            </>
+        }
       </Section>
     </Container>
   );
