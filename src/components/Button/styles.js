@@ -12,7 +12,7 @@ export const Container = styled.button`
   background-color: ${({ filled, color }) => filled ? color === "secondary" ? COLORS.black: COLORS.orange : "transparent"};
   color: ${COLORS.white};
   border: 1px solid ${({ filled }) => filled ? COLORS.orange : COLORS.white};
-  border-radius: 6px;
+  border-radius: 12px;
   padding: 0.5rem 0.8rem;
   cursor: pointer;
   transition: .2s linear;
