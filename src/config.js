@@ -1,4 +1,6 @@
 const BASE_URI = process.env.REACT_APP_BASE_URI;
 const TOKEN_KEY = process.env.REACT_APP_TOKEN_KEY;
+const TOKEN_RENIEC = process.env.REACT_APP_TOKEN_RENIEC;
+const BASE_URI_RENIEC = process.env.REACT_APP_BASE_URI_RENIEC;
 
-export { BASE_URI, TOKEN_KEY };
+export { BASE_URI, TOKEN_KEY, TOKEN_RENIEC, BASE_URI_RENIEC };

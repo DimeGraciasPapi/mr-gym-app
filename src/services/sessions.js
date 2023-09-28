@@ -2,7 +2,7 @@ import { TOKEN_KEY } from "../config";
 import apiFetch from "./apiFetch"
 
 export const login = async (body) => {
-  const { token, ...user } = await apiFetch("auth/login", { body });
+  const { token, ...user } = await apiFetch("auth/signin", { body });
 
   localStorage.setItem(TOKEN_KEY, token);
   return user;
