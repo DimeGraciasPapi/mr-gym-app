@@ -8,7 +8,7 @@ export const Container = styled.div`
   height: 85px;
   z-index: 10;
   opacity: .98;
-  // position: sticky;
+  position: sticky;
   top: 0;
   padding: 1rem 2.5rem;
   display: flex;
