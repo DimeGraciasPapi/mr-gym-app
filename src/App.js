@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import { useAuth } from "./context/auth";
 import { Route, Routes } from "react-router-dom";
 import SessionModal from "./components/SessionModal";
+import Home from "./pages/Client/Home/home";
 
 function App() {
   const { user, isLoading } = useAuth();
@@ -20,7 +21,7 @@ function App() {
           user?.user_type === "admin"
           ? "Admin section"
           : <Routes>
-              <Route index path="/" element={<h1>Home page</h1>} />
+              <Route index path="/" element={<Home />} />
               <Route path="/planes" element={<h1>Planes page</h1>} />
               <Route path="/ubicanos" element={<h1>Ubicanos page</h1>} />
               <Route path="*" element={<h1>Pagina no encontrada</h1>} />
