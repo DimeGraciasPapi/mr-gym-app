@@ -4,6 +4,7 @@ import { useAuth } from "./context/auth";
 import { Route, Routes } from "react-router-dom";
 import SessionModal from "./components/SessionModal";
 import Home from "./pages/Client/Home/home";
+import Footer from "./components/Footer";
 
 function App() {
   const { user, isLoading } = useAuth();
@@ -40,6 +41,7 @@ function App() {
           modal={modal}
           setModal={setModal}
         />
+        <Footer />
       </>
   );
 }
