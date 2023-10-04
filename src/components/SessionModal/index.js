@@ -97,29 +97,29 @@ function SessionModal({ setModal, modal }) {
       }
     
   return (
-    <Modal
-      isOpen={modal.isOpen}
-      toggle={toggle}
-      centered
-      size="lg"
+    <Formik
+      initialValues={initialValues}
+      onSubmit={handleSubmit}
+      validate={(values) => validate(values, modal.action)}
     >
-      <Container>
-        <Formik
-          initialValues={initialValues}
-          onSubmit={handleSubmit}
-          validate={(values) => validate(values, modal.action)}
-        >
-          {({
-            values,
-            errors,
-            touched,
-            isValid,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            resetForm
-          }) => (
-            <>
+      {({
+        values,
+        errors,
+        touched,
+        isValid,
+        handleChange,
+        handleBlur,
+        handleSubmit,
+        resetForm
+      }) => (
+        <>
+          <Modal
+            isOpen={modal.isOpen}
+            toggle={() => toggle(resetForm)}
+            centered
+            size="lg"
+          >
+            <Container>
               <Close>
                 <IoClose
                   onClick={() => toggle(resetForm)}
@@ -212,11 +212,11 @@ function SessionModal({ setModal, modal }) {
                   </Form>
                 </SessionSection>
               </Section>
-            </>
-          )}
-        </Formik>
-      </Container>
-    </Modal>
+            </Container>
+          </Modal>
+        </>
+      )}
+    </Formik>
   );
 }
 

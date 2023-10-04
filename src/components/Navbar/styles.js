@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { COLORS } from "../../../styles/colors";
+import { COLORS } from "../../styles/colors";
 import { css } from "@emotion/react";
 
 export const Container = styled.div`
@@ -7,8 +7,8 @@ export const Container = styled.div`
   width: 100%;
   height: 85px;
   z-index: 10;
-  opacity: .98;
-  // position: sticky;
+  opacity: 0.98;
+  position: sticky;
   top: 0;
   padding: 1rem 2.5rem;
   display: flex;

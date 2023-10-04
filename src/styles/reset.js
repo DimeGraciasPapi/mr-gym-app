@@ -15,8 +15,9 @@ export const RESET = css`
     color: ${COLORS.gray};
   }
 
-  ul {
-    list-style: none;
+  p {
+    margin: 0;
+    padding: 0;
   }
 
   body {

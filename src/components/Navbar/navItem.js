@@ -2,7 +2,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { DropdownItem } from "reactstrap";
 import { NavItemStyles } from "./styles";
-import { useAuth } from "../../../context/auth";
+import { useAuth } from "../../context/auth";
 
 function NavItem({ Icon, to, children, isToLogout }) {
   const location = useLocation();
@@ -12,17 +12,17 @@ function NavItem({ Icon, to, children, isToLogout }) {
   const handleClick = () => {
     navigate(to);
 
-    if(isToLogout) logout();
-  }
+    if (isToLogout) logout();
+  };
 
   return (
     <DropdownItem
       css={NavItemStyles}
       onClick={handleClick}
-      active={location.pathname === to}
-    > 
+      active={!isToLogout && location.pathname === to}
+    >
       <Icon />
-      { children }
+      {children}
     </DropdownItem>
   );
 }

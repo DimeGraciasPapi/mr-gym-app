@@ -33,7 +33,7 @@ function AuthProvider({ children }) {
       const response = await session.login(credentials);
       setUser(response);
       
-      if(response.user_type === "admin") navigate("/");
+      if(response.user_type === "client") navigate("/client-logged"); //temporal
 
       return response;
     }catch(e) {
@@ -47,6 +47,8 @@ function AuthProvider({ children }) {
     try {
       const response = await session.signup(data);
       setUser(response);
+
+      navigate("/end-registration-page"); //temporal
 
       return response;
     }catch(e) {

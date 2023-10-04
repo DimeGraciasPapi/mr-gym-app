@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import { useAuth } from "./context/auth";
 import { Route, Routes } from "react-router-dom";
 import SessionModal from "./components/SessionModal";
+import Home from "./pages/Client/Home/home";
 
 function App() {
   const { user, isLoading } = useAuth();
@@ -17,23 +18,23 @@ function App() {
           setModal={setModal}
         />
         {
-          user?.user_type === "admin"
-          ? "Admin section"
-          : <Routes>
-              <Route index path="/" element={<h1>Home page</h1>} />
-              <Route path="/planes" element={<h1>Planes page</h1>} />
-              <Route path="/ubicanos" element={<h1>Ubicanos page</h1>} />
-              <Route path="*" element={<h1>Pagina no encontrada</h1>} />
-              {
-                user
-                ? <>
+          <Routes>
+            {
+              user && user.user_type === "client"
+              ? ""
+              : <Route index path="/" element={<Home setModal={setModal} />} />
+            }
+            <Route path="/planes" element={<h1>Planes page</h1>} />
+            <Route path="/ubicanos" element={<h1>Ubicanos page</h1>} />
+            <Route path="*" element={<h1>Pagina no encontrada</h1>} />
+            {
+              user
+              &&  <>
                     <Route path="/perfil" element={<h1>Profile page</h1>}/>
                     <Route path="/client-logged" element={<h1>pagina solo para cliente loggeado</h1>} />
                   </> 
-                
-                : null
-              }
-            </Routes>
+            }
+          </Routes>
         }
         <SessionModal 
           modal={modal}

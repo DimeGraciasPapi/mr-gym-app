@@ -27,6 +27,10 @@ export const Section = styled.section`
   @media screen and (max-width: 990px) {
     width: ${({ isImage }) => isImage ? "40%" : "60%"};
   }
+
+  @media screen and (max-width: 480px) {
+    width: ${({ isImage }) => isImage ? "25%" : "75%"};
+  }
 `;
 
 export const Image = styled.img`
