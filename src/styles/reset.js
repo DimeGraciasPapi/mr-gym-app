@@ -25,4 +25,24 @@ export const RESET = css`
     color: ${COLORS.black};
     background-color: ${COLORS.white};
   }
+
+  // reset scrollbar
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, .4);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .5);
+    border-radius: 2rem;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, .6);
+  }
 `;
