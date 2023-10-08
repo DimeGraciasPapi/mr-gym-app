@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Button from "../../../components/Button";
-import { Container, Logo, Plan, PlanSection, PlanTitle, Plans, PlantText, Section, Text, Title } from "./styles";
+import { Container, Logo, Plan, PlanSection, PlanTitle, Plans, PlantText, Section, Text, Title } from "../Plans/styles";
 import { get } from "../../../services";
 import { GiBiceps } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 
-function Home({ setModal }) {
+function PlansPage({ setModal }) {
   const [plans, setPlans] = useState([]);
   const navigate = useNavigate();
 
@@ -120,4 +120,4 @@ function Home({ setModal }) {
   );
 }
 
-export default Home;
+export default PlansPage;
