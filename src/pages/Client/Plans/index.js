@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import Button from "../../../components/Button";
-import { Container, Logo, Plan, PlanSection, PlanTitle, Plans, PlantText, Section, Text, Title } from "../Plans/styles";
+import { Logo, Plan, PlanSection, PlanTitle, Plans, PlantText, Section, Text, Title } from "../Plans/styles";
 import { get } from "../../../services";
 import { GiBiceps } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
+import { Container } from "../styles";
 
 function PlansPage({ setModal }) {
   const [plans, setPlans] = useState([]);
@@ -22,7 +23,10 @@ function PlansPage({ setModal }) {
 
   return (
     <>
-      <Container>
+      <Container
+        src_img="weight.jpeg"
+        positionY={90}
+      >
         <Section>
           <Title> Muchas opciones </Title>
           <Text>

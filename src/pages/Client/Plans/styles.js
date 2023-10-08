@@ -1,26 +1,6 @@
 import styled from "@emotion/styled";
 import { COLORS } from "../../../styles/colors";
 
-export const Container = styled.div`
-  width: 100%;
-  height: 87.7vh;
-  position: relative;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/photo/weight.jpeg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: 0 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 3rem;
-  gap: 1rem;
-
-  @media screen and (max-width: 700px) {
-    padding: 1rem;
-    height: 95vh;
-  }
-`;
-
 export const Section = styled.section`
   width: 40%;
   display: flex;
