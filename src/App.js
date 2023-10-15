@@ -3,8 +3,9 @@ import Navbar from "./components/Navbar";
 import { useAuth } from "./context/auth";
 import { Route, Routes } from "react-router-dom";
 import SessionModal from "./components/SessionModal";
-import Home from "./pages/Client/Home/home";
 import Footer from "./components/Footer";
+import PlansPage from "./pages/Client/Plans";
+import Home from "./pages/Client/Home";
 
 function App() {
   const { user, isLoading } = useAuth();
@@ -23,9 +24,9 @@ function App() {
             {
               user && user.user_type === "client"
               ? ""
-              : <Route index path="/" element={<Home setModal={setModal} />} />
+              : <Route index path="/" element={<Home setModal={setModal} />}/>
             }
-            <Route path="/planes" element={<h1>Planes page</h1>} />
+            <Route path="/planes" element={<PlansPage setModal={setModal} />} />
             <Route path="/ubicanos" element={<h1>Ubicanos page</h1>} />
             <Route path="*" element={<h1>Pagina no encontrada</h1>} />
             {
