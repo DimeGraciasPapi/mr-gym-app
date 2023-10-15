@@ -50,7 +50,7 @@ function SessionModal({ setModal, modal }) {
     resetForm();
   }
 
-  const handleSubmit = async (values) => {
+  const handleSubmit = async (values, resetForm) => {
     setIsLoading(true);
     let data = values;
 
@@ -66,13 +66,13 @@ function SessionModal({ setModal, modal }) {
     try {
       if(modal.action === "login") {
         const user = await login(data);
-        if(user) toggle();
+        if(user) toggle(resetForm);
         setIsLoading(false);
         return;
       }
 
       const newUser = await signup(data);
-      if(newUser) toggle();
+      if(newUser) toggle(resetForm);
       setIsLoading(false);
     }catch(e) {
       setError(e.message);
@@ -152,7 +152,7 @@ function SessionModal({ setModal, modal }) {
                   </Navigation>
                   <Form
                     action={modal.action}
-                    onSubmit={handleSubmit}
+                    onSubmit={(values) => handleSubmit(values, resetForm)}
                   >
                     {
                       modal.action === "login"
