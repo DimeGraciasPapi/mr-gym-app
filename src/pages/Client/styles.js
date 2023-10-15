@@ -2,12 +2,12 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   width: 100%;
-  height: 87.7vh;
+  min-height: ${({ height }) => height || 87.7}vh;
   position: relative;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/photo/${({ src_img }) => src_img}");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 0 ${({positionY}) => positionY || 50}%;
+  background-position: center ${({positionY}) => positionY || 50}%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,6 +16,6 @@ export const Container = styled.div`
 
   @media screen and (max-width: 700px) {
     padding: 1rem;
-    height: 95vh;
+    height: 83vh;
   }
 `;
