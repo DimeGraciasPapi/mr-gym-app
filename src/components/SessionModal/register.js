@@ -33,8 +33,8 @@ function Register({
 
       setPersonInfo((data) => ({
         ...data,
-        name: info.nombres || "",
-        last_name: info.success ? `${info.apellidoPaterno} ${info.apellidoMaterno}` : ""
+        name: info.data?.nombres || "",
+        last_name: info.success ? `${info.data.apellido_paterno} ${info.data.apellido_materno}` : ""
       }))
     }
   }
