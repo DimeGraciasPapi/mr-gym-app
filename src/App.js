@@ -6,6 +6,7 @@ import SessionModal from "./components/SessionModal";
 import Footer from "./components/Footer";
 import PlansPage from "./pages/Client/Plans";
 import Home from "./pages/Client/Home";
+import Ubication from "./pages/Client/Ubication";
 
 function App() {
   const { user, isLoading } = useAuth();
@@ -27,7 +28,7 @@ function App() {
               : <Route index path="/" element={<Home setModal={setModal} />}/>
             }
             <Route path="/planes" element={<PlansPage setModal={setModal} />} />
-            <Route path="/ubicanos" element={<h1>Ubicanos page</h1>} />
+            <Route path="/ubicanos" element={<Ubication setModal={setModal} />} />
             <Route path="*" element={<h1>Pagina no encontrada</h1>} />
             {
               user
