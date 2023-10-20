@@ -13,12 +13,15 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import { CgProfile } from "react-icons/cg";
+import { GiBiceps } from "react-icons/gi";
+import { useData } from "../../context/data";
 
-function Navbar({ setModal }) {
+function Navbar() {
   const [dropdownMenu, setDropDownMenu] = useState(false);
   const [dropdownProfile, setDropDownProfile] = useState(false);
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { setModal } = useData();
 
   const handleMenu = () => setDropDownMenu(!dropdownMenu);
   const handleProfile = () => setDropDownProfile(!dropdownProfile);
@@ -46,17 +49,17 @@ function Navbar({ setModal }) {
             user && user.user_type === "client"
             ? ""
             : <NavItem Icon={AiFillHome} to="/">
-                {" "}
-                Inicio{" "}
+                Inicio
               </NavItem>
           }
           <NavItem Icon={BsFillCalendarFill} to="/planes">
-            {" "}
-            Nuestros planes{" "}
+            Nuestros planes
           </NavItem>
           <NavItem Icon={FaMapMarkerAlt} to="/ubicanos">
-            {" "}
-            Ubícanos{" "}
+            Ubícanos
+          </NavItem>
+          <NavItem Icon={GiBiceps} to="/mr-gym-go">
+            Mr. Gym Go
           </NavItem>
         </DropdownMenu>
       </Dropdown>
@@ -87,8 +90,7 @@ function Navbar({ setModal }) {
             </DropdownToggle>
             <DropdownMenu dark end style={{ marginTop: "0.5rem" }}>
               <NavItem Icon={CgProfile} to="/perfil">
-                {" "}
-                Perfil{" "}
+                Perfil
               </NavItem>
               <NavItem Icon={HiOutlineLogout} to="/" isToLogout>
                 Cerrar sesión

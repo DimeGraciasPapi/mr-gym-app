@@ -9,9 +9,11 @@ import { FaLocationDot } from "react-icons/fa6";
 import { PiCursorClickBold } from "react-icons/pi";
 import { COLORS } from "../../../styles";
 import { useNavigate } from "react-router-dom";
+import { useData } from "../../../context/data";
 
-function Home({ setModal }) {
+function Home() {
   const navigate = useNavigate();
+  const { setModal } = useData();
 
   return (
     <>

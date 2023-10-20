@@ -4,6 +4,7 @@ import { get } from "../services";
 const DataContext = createContext();
 
 function DataProvider({ children }) {
+  const [modal, setModal] = useState({ action: "login", isOpen: false });
   const [plans, setPlans] = useState([]);
   const [registers, setRegisters] = useState([]);
   const [isGetting, setIsGetting] = useState(true); 
@@ -40,6 +41,8 @@ function DataProvider({ children }) {
         registers,
         isGetting,
         error,
+        modal,
+        setModal,
         setError,
         setIsGetting
       }}

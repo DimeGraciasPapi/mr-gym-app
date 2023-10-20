@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Navbar from "./components/Navbar";
 import { useAuth } from "./context/auth";
 import { Route, Routes } from "react-router-dom";
@@ -7,28 +6,27 @@ import Footer from "./components/Footer";
 import PlansPage from "./pages/Client/Plans";
 import Home from "./pages/Client/Home";
 import Ubication from "./pages/Client/Ubication";
+import MrGymGo from "./pages/Client/MrGymGo";
 
 function App() {
   const { user, isLoading } = useAuth();
-  const [modal, setModal] = useState({ action: "login", isOpen: false });
 
   return (
     isLoading
     ? "Cargando..."
     : 
       <>
-        <Navbar 
-          setModal={setModal}
-        />
+        <Navbar />
         {
           <Routes>
             {
               user && user.user_type === "client"
               ? ""
-              : <Route index path="/" element={<Home setModal={setModal} />}/>
+              : <Route index path="/" element={<Home />}/>
             }
-            <Route path="/planes" element={<PlansPage setModal={setModal} />} />
-            <Route path="/ubicanos" element={<Ubication setModal={setModal} />} />
+            <Route path="/planes" element={<PlansPage />} />
+            <Route path="/ubicanos" element={<Ubication />} />
+            <Route path="/mr-gym-go" element={<MrGymGo />} />
             <Route path="*" element={<h1>Pagina no encontrada</h1>} />
             {
               user
@@ -39,10 +37,7 @@ function App() {
             }
           </Routes>
         }
-        <SessionModal 
-          modal={modal}
-          setModal={setModal}
-        />
+        <SessionModal />
         <Footer />
       </>
   );
