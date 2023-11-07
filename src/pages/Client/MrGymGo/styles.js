@@ -53,6 +53,7 @@ export const GymSection = styled.div`
   width: 100%;
   min-height: 420px;
   padding: 2rem;
+  flex-direction: ${({ isLeft }) => isLeft ? "row-reverse": "row"};
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("assets/photo/${({ src_img }) => src_img}");
   background-size: cover;
   background-repeat: no-repeat;
