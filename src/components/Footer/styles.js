@@ -40,6 +40,10 @@ export const Section = styled.div`
 `;
 
 export const Link = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   color: white;
   font-size: 1rem;
   cursor: ${({ href, isLink }) => !isLink && !href  ? "" : "pointer"};
