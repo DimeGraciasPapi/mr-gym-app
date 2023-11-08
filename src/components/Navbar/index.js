@@ -10,7 +10,7 @@ import Button from "../Button";
 import { BsFillPeopleFill, BsFillCalendarFill } from "react-icons/bs";
 import { AiFillHome } from "react-icons/ai";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth";
 import { CgProfile } from "react-icons/cg";
 import { GiBiceps } from "react-icons/gi";
@@ -22,10 +22,18 @@ function Navbar() {
   const navigate = useNavigate();
   const { user } = useAuth();
   const { setModal } = useData();
-
+  const location = useLocation();
+  
   const handleMenu = () => setDropDownMenu(!dropdownMenu);
   const handleProfile = () => setDropDownProfile(!dropdownProfile);
 
+  const handleClick = (to) => {
+    window.scrollTo(0, 0);
+    if(user && to === "/") return;
+
+    navigate(to)
+  }
+  
   const handleModal = (action) => {
     setModal((modal) => ({
       action,
@@ -58,16 +66,16 @@ function Navbar() {
           <NavItem Icon={FaMapMarkerAlt} to="/ubicanos">
             Ubícanos
           </NavItem>
-          <NavItem Icon={GiBiceps} to="/mr-gym-go">
+          <NavItem Icon={GiBiceps} to="/mr-gym-go" active={location.pathname.includes("mr-gym-go")}>
             Mr. Gym Go
           </NavItem>
         </DropdownMenu>
       </Dropdown>
       {/* logo */}
       <Logo
-        onClick={() => navigate("/")}
+        onClick={() => handleClick("/")}
         alt="logo-mr-gym"
-        src="assets/logo.png"
+        src="/assets/logo.png"
       />
       {/* buttons */}
       <Section>

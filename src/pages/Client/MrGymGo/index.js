@@ -12,6 +12,12 @@ function MrGymGo() {
   const { setModal } = useData();
   const navigate = useNavigate();
 
+  const handleClick = (to) => {
+    window.scrollTo(0, 0);
+
+    navigate(to)
+  }
+
   return (
     <>
       <Container
@@ -66,7 +72,7 @@ function MrGymGo() {
               </Title>
               <Text size={15}>{ item.description }</Text>
               <Button
-                onClick={() => navigate(item.to)}
+                onClick={() => handleClick(item.to)}
                 filled
                 Icon={GiBiceps}
               >
