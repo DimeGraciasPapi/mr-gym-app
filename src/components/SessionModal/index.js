@@ -120,6 +120,7 @@ function SessionModal() {
             toggle={() => toggle(resetForm)}
             centered
             size="lg"
+            style={{borderRadius: "5rem"}}
           >
             <Container>
               <Close>
@@ -133,7 +134,7 @@ function SessionModal() {
               >
                 <Image 
                   alt="box"
-                  src="assets/photo/box.jpeg"
+                  src="/assets/photo/box.jpeg"
                 />
               </Section>
               <Section>

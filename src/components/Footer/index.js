@@ -9,7 +9,7 @@ function Footer() {
       <Logo
         onClick={() => navigate("/")}
         alt="logo-mr-gym"
-        src="assets/logo.png"
+        src="/assets/logo.png"
       />
       <Line />
       <Section>
