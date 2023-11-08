@@ -15,6 +15,12 @@ function Home() {
   const navigate = useNavigate();
   const { setModal } = useData();
 
+  const handleClick = (to) => {
+    window.scrollTo(0, 0);
+
+    navigate(to);
+  }
+
   return (
     <>
       <Container
@@ -109,7 +115,7 @@ function Home() {
           </Text>
           <Steps>
             <StepCard
-              onClick={() => navigate("/ubicanos")}
+              onClick={() => handleClick("/ubicanos")}
             >
               <FaLocationDot 
                 color={COLORS.gray}
@@ -124,7 +130,7 @@ function Home() {
               size={60}
             />
             <StepCard
-              onClick={() => navigate("/planes")}
+              onClick={() => handleClick("/planes")}
             >
               <PiCursorClickBold 
                 color={COLORS.gray}
