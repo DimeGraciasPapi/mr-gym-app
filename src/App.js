@@ -7,6 +7,8 @@ import PlansPage from "./pages/Client/Plans";
 import Home from "./pages/Client/Home";
 import Ubication from "./pages/Client/Ubication";
 import MrGymGo from "./pages/Client/MrGymGo";
+import MainGymPage from "./components/GymPage/main";
+import generateRoutes from "./helpers/generateRoutes";
 
 function App() {
   const { user, isLoading } = useAuth();
@@ -27,6 +29,12 @@ function App() {
             <Route path="/planes" element={<PlansPage />} />
             <Route path="/ubicanos" element={<Ubication />} />
             <Route path="/mr-gym-go" element={<MrGymGo />} />
+            <Route path="/mr-gym-go/cardio-ritmo" element={<MainGymPage search="cardio" />} />
+            <Route path="/mr-gym-go/cuerpo-mente" element={<MainGymPage search="cuerpo" />} />
+            <Route path="/mr-gym-go/fuerza-resistencia" element={<MainGymPage search="fuerza" />} />
+            { generateRoutes("cardio") }
+            { generateRoutes("fuerza") }
+            { generateRoutes("cuerpo") }
             <Route path="*" element={<h1>Pagina no encontrada</h1>} />
             {
               user
