@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth";
 import { useData } from "../../context/data";
 import Button from "../Button";
 import { Container, Plan, Section, Text, Title } from "./styles";
@@ -5,6 +7,14 @@ import { GiBiceps } from "react-icons/gi";
 
 function PlansSection() {
   const { plans, setModal } = useData();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if(user) return navigate("/choose-plan");
+
+    setModal(modal => ({action: "register", isOpen: !modal.isOpen}))
+  }
 
   return (
     <Container>
@@ -51,7 +61,7 @@ function PlansSection() {
                 <li><p> Vestidores </p></li>
               </ul>
               <Button
-                onClick={() => setModal(modal => ({action: "register", isOpen: !modal.isOpen}))}
+                onClick={() => handleClick()}
                 Icon={GiBiceps}
                 filled={plan.name !== "Black"}
                 style={{alignSelf: "center"}}

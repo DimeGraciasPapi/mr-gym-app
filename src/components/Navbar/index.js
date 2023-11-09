@@ -29,7 +29,7 @@ function Navbar() {
 
   const handleClick = (to) => {
     window.scrollTo(0, 0);
-    if(user && to === "/") return;
+    if(user && user.user_type === "client" && to === "/") return;
 
     navigate(to)
   }
