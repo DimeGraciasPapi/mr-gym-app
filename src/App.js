@@ -22,7 +22,7 @@ function App() {
         <Navbar />
         {
           <Routes>
-            <Route index path="/" element={user ? <Navigate to="/mr-gym-go" /> : <Home />}/>
+            <Route index path="/" element={user && user.user_type === "client" ? <Navigate to="/mr-gym-go" /> : <Home />}/>
             <Route path="/planes" element={<PlansPage />} />
             <Route path="/ubicanos" element={<Ubication />} />
             <Route path="/mr-gym-go" element={<MrGymGo />} />
