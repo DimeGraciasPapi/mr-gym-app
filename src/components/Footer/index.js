@@ -60,7 +60,6 @@ function Footer() {
             target="_blank"
             href="about:blank"
           >
-            <img/>
             <BsFacebook/>
             Facebook
           </Link>
@@ -68,7 +67,6 @@ function Footer() {
             target="_blank"
             href="about:blank"
           >
-            <img/>
             <AiOutlineInstagram/>
             Instagram
           </Link>
@@ -76,7 +74,6 @@ function Footer() {
             target="_blank"
             href="about:blank"
           >
-            <img/>
             <FaTiktok/>
             Tik Tok
           </Link>
@@ -84,7 +81,6 @@ function Footer() {
             target="_blank"
             href="about:blank"
           >
-            <img/>
             <BsLinkedin/>
             Linkedln
           </Link>
