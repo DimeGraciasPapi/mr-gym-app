@@ -36,12 +36,11 @@ function SessionModal() {
   const { setError, error, login, signup } = useAuth();
   const { setModal, modal } = useData();
 
-  const toggle = (resetForm) => {
+  const toggle = () => {
     setModal({ ...modal, isOpen: !modal.isOpen });
     setError(null);
     setIsLoading(false);
     setPersonInfo(personInfoObject);
-    resetForm();
   }
 
   const changeAction = (to, resetForm) => {
@@ -52,7 +51,7 @@ function SessionModal() {
     resetForm();
   }
 
-  const handleSubmit = async (values, resetForm) => {
+  const handleSubmit = async (values) => {
     setIsLoading(true);
     let data = values;
 
@@ -68,13 +67,13 @@ function SessionModal() {
     try {
       if(modal.action === "login") {
         const user = await login(data);
-        if(user) toggle(resetForm);
+        if(user) toggle();
         setIsLoading(false);
         return;
       }
 
       const newUser = await signup(data);
-      if(newUser) toggle(resetForm);
+      if(newUser) toggle();
       setIsLoading(false);
     }catch(e) {
       setError(e.message);
@@ -102,7 +101,7 @@ function SessionModal() {
     <Formik
       initialValues={initialValues}
       onSubmit={handleSubmit}
-      validate={(values) => validate(values, modal.action)}
+      validate={(values) => validate(values, modal.action, personInfo)}
     >
       {({
         values,

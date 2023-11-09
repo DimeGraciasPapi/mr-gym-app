@@ -25,6 +25,7 @@ export const Container = styled.button`
   &:disabled {
     background-color: #4E4E4E;
     cursor: not-allowed;
+    border: none;
   }
 
   @media screen and (max-width: 650px) {

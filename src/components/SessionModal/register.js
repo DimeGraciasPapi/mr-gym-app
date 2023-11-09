@@ -16,6 +16,7 @@ function Register({
     personInfo,
     setPersonInfo
   }) {
+
   const handleChangeInfo = async (e) => {
     if(e.target.value.length > 8) return;
     

@@ -131,7 +131,6 @@ export const Image = styled.img`
 
   @media screen and (max-width: 500px) {
     max-width: 250px;
-    // height: 200px;
   }
 `;
 

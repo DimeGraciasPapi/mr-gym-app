@@ -1,4 +1,4 @@
-function validate(values, action) {
+function validate(values, action, personInfo) {
   const errors = {};
 
   if(!values.email) {
@@ -15,6 +15,16 @@ function validate(values, action) {
 
   // only for register
   if(action === "register") {
+    if(!personInfo.name) {
+      if(!values.name) {
+        errors.name = "Este campo es obligatorio";
+      }
+    
+      if(!values.last_name) {
+        errors.last_name = "Este campo es obligatorio";
+      }
+    }
+
     if(!values.password_confirmation) {
       errors.password_confirmation = "Este campo es obligatorio";
     }else if(values.password !== values.password_confirmation) {
