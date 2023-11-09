@@ -1,6 +1,6 @@
 import Navbar from "./components/Navbar";
 import { useAuth } from "./context/auth";
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import SessionModal from "./components/SessionModal";
 import Footer from "./components/Footer";
 import PlansPage from "./pages/Client/Plans";
@@ -9,6 +9,7 @@ import Ubication from "./pages/Client/Ubication";
 import MrGymGo from "./pages/Client/MrGymGo";
 import MainGymPage from "./components/GymPage/main";
 import generateRoutes from "./helpers/generateRoutes";
+import Profile from "./pages/Client/Profile";
 
 function App() {
   const { user, isLoading } = useAuth();
@@ -21,11 +22,7 @@ function App() {
         <Navbar />
         {
           <Routes>
-            {
-              user && user.user_type === "client"
-              ? ""
-              : <Route index path="/" element={<Home />}/>
-            }
+            <Route index path="/" element={user ? <Navigate to="/mr-gym-go" /> : <Home />}/>
             <Route path="/planes" element={<PlansPage />} />
             <Route path="/ubicanos" element={<Ubication />} />
             <Route path="/mr-gym-go" element={<MrGymGo />} />
@@ -35,14 +32,13 @@ function App() {
             { generateRoutes("cardio") }
             { generateRoutes("fuerza") }
             { generateRoutes("cuerpo") }
-            <Route path="*" element={<h1>Pagina no encontrada</h1>} />
             {
               user
               &&  <>
-                    <Route path="/perfil" element={<h1>Profile page</h1>}/>
-                    <Route path="/client-logged" element={<h1>pagina solo para cliente loggeado</h1>} />
+                    <Route path="/perfil" element={<Profile />}/>
                   </> 
             }
+            <Route path="*" element={<h1>Pagina no encontrada</h1>} />
           </Routes>
         }
         <SessionModal />
