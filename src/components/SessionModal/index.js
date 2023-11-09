@@ -16,6 +16,7 @@ import validate from "./validate";
 import Login from "./login";
 import Register from "./register";
 import Button from "../Button";
+import { useData } from "../../context/data";
 
 const personInfoObject = {
   dni: "",
@@ -29,10 +30,11 @@ const personInfoObject = {
   }
 };
 
-function SessionModal({ setModal, modal }) {
+function SessionModal() {
   const [isLoading, setIsLoading] = useState(false);
   const [personInfo, setPersonInfo] = useState(personInfoObject);
   const { setError, error, login, signup } = useAuth();
+  const { setModal, modal } = useData();
 
   const toggle = (resetForm) => {
     setModal({ ...modal, isOpen: !modal.isOpen });
@@ -118,6 +120,7 @@ function SessionModal({ setModal, modal }) {
             toggle={() => toggle(resetForm)}
             centered
             size="lg"
+            style={{borderRadius: "5rem"}}
           >
             <Container>
               <Close>
@@ -131,7 +134,7 @@ function SessionModal({ setModal, modal }) {
               >
                 <Image 
                   alt="box"
-                  src="assets/photo/box.jpeg"
+                  src="/assets/photo/box.jpeg"
                 />
               </Section>
               <Section>

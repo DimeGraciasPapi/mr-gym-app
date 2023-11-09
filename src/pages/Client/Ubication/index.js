@@ -8,8 +8,11 @@ import { BsFillTelephoneFill } from "react-icons/bs";
 import { BiSolidJoystick } from "react-icons/bi";
 import Icon from "./iconMarker";
 import Button from "../../../components/Button";
+import { useData } from "../../../context/data";
 
-function Ubication({ setModal }) {
+function Ubication() {
+  const { setModal } = useData();
+
   return (
     <>
       <Container>
@@ -104,7 +107,7 @@ function Ubication({ setModal }) {
           </Card>
         </Section>
       </Container>
-      <PlansSection setModal={setModal} />
+      <PlansSection />
     </>
   );
 }

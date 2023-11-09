@@ -4,14 +4,15 @@ import { DropdownItem } from "reactstrap";
 import { NavItemStyles } from "./styles";
 import { useAuth } from "../../context/auth";
 
-function NavItem({ Icon, to, children, isToLogout }) {
+function NavItem({ Icon, to, children, isToLogout, active }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { logout } = useAuth();
 
   const handleClick = () => {
+    window.scrollTo(0, 0);
     navigate(to);
-
+    
     if (isToLogout) logout();
   };
 
@@ -19,7 +20,7 @@ function NavItem({ Icon, to, children, isToLogout }) {
     <DropdownItem
       css={NavItemStyles}
       onClick={handleClick}
-      active={!isToLogout && location.pathname === to}
+      active={active || (!isToLogout && location.pathname === to)}
     >
       <Icon />
       {children}

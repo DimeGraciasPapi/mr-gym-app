@@ -9,9 +9,17 @@ import { FaLocationDot } from "react-icons/fa6";
 import { PiCursorClickBold } from "react-icons/pi";
 import { COLORS } from "../../../styles";
 import { useNavigate } from "react-router-dom";
+import { useData } from "../../../context/data";
 
-function Home({ setModal }) {
+function Home() {
   const navigate = useNavigate();
+  const { setModal } = useData();
+
+  const handleClick = (to) => {
+    window.scrollTo(0, 0);
+
+    navigate(to);
+  }
 
   return (
     <>
@@ -107,7 +115,7 @@ function Home({ setModal }) {
           </Text>
           <Steps>
             <StepCard
-              onClick={() => navigate("/ubicanos")}
+              onClick={() => handleClick("/ubicanos")}
             >
               <FaLocationDot 
                 color={COLORS.gray}
@@ -122,7 +130,7 @@ function Home({ setModal }) {
               size={60}
             />
             <StepCard
-              onClick={() => navigate("/planes")}
+              onClick={() => handleClick("/planes")}
             >
               <PiCursorClickBold 
                 color={COLORS.gray}

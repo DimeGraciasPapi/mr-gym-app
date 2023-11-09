@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Container } from "../styles";
 import PlansSection from "../../../components/PlansSection";
 
-function PlansPage({ setModal }) {
+function PlansPage() {
   const navigate = useNavigate();
 
   return (
@@ -50,7 +50,7 @@ function PlansPage({ setModal }) {
           </Button>
         </Section>
       </Container>
-      <PlansSection setModal={setModal} />
+      <PlansSection />
     </>
   );
 }

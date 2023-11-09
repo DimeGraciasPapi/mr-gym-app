@@ -3,8 +3,8 @@ import Button from "../Button";
 import { Container, Plan, Section, Text, Title } from "./styles";
 import { GiBiceps } from "react-icons/gi";
 
-function PlansSection({ setModal }) {
-  const { plans } = useData();
+function PlansSection() {
+  const { plans, setModal } = useData();
 
   return (
     <Container>

@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { get } from "../services";
 import * as session from "../services/sessions";
 
@@ -10,6 +10,7 @@ function AuthProvider({ children }) {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const fetch = async () => {
@@ -32,8 +33,8 @@ function AuthProvider({ children }) {
     try {
       const response = await session.login(credentials);
       setUser(response);
-      
-      if(response.user_type === "client") navigate("/client-logged"); //temporal
+
+      if(location.pathname === "/") navigate("/mr-gym-go");
 
       return response;
     }catch(e) {
@@ -48,7 +49,7 @@ function AuthProvider({ children }) {
       const response = await session.signup(data);
       setUser(response);
 
-      navigate("/end-registration-page"); //temporal
+      if(location.pathname === "/") navigate("/planes");
 
       return response;
     }catch(e) {

@@ -7,6 +7,8 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
+  border-radius: 7px;
+  overflow: hidden;
 `;
 
 export const Close = styled.div`
