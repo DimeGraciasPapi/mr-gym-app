@@ -81,7 +81,7 @@ export const List = styled.div`
   gap: 4rem;
   flex-wrap: wrap;
 
-  @media screen and (max-width: 830px) {
+  @media screen and (max-width: 1340px) {
     justify-content: center;
   }
 `;
@@ -116,6 +116,11 @@ export const Back = styled(BiArrowBack)`
   top: 1.5rem;
   left: 2rem;
   cursor: pointer;
+
+  @media screen and (max-width: 500px) {
+    top: 0.5rem;
+    left: 0.5rem;
+  }
 `;
 
 export const Image = styled.img`
@@ -123,6 +128,11 @@ export const Image = styled.img`
   height: 250px;
   object-fit: cover;
   border-radius: 1rem;
+
+  @media screen and (max-width: 500px) {
+    max-width: 250px;
+    // height: 200px;
+  }
 `;
 
 export const Video = styled.iframe`
@@ -165,4 +175,8 @@ export const FlexRow = styled.div`
   justify-content: center;
   gap: 1rem;
   flex-wrap: wrap;
+`;
+
+export const ModalVideo = styled.div`
+  height: 70vh;
 `;
