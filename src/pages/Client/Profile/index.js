@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import { Container, Form, Section, Title } from "./styles";
+import { Container, FlexColumn, FlexRow, Form, Plan, Section, Text, Title, TitleSection } from "./styles";
 import { useAuth } from "../../../context/auth";
 import { useState } from "react";
 import FormInput from "../../../components/FormInput";
@@ -13,10 +13,16 @@ import Button from "../../../components/Button";
 import validate from "./validate";
 import { Alert, Spinner } from "reactstrap";
 import { update } from "../../../services";
+import { GiBiceps } from "react-icons/gi";
+import { useNavigate } from "react-router-dom";
+import { useData } from "../../../context/data";
+import { COLORS } from "../../../styles";
 
 function Profile() {
   const [isLoading, setIsLoading] = useState(false);
   const { user, setError, error, setUser } = useAuth();
+  const { plans } = useData();
+  const navigate = useNavigate();
 
   const handleSubmit = async (values) => {
     setIsLoading(true);
@@ -46,6 +52,8 @@ function Profile() {
     password: "",
     password_confirmation: ""
   }
+
+  const plan = plans.find(plan => plan.id === user.plan[0]);
 
   return (
     <Container>
@@ -167,6 +175,69 @@ function Profile() {
           )}
         </Formik>
       </Section>
+      {
+        user.user_type === "client"
+        && <Plan>
+            {
+              user.plan[0]
+              ? <>
+                <TitleSection>
+                  <Title> Plan {plan?.name} </Title>
+                  <GiBiceps 
+                    color="white"
+                    size={30}
+                    style={{marginTop: "-15px"}}
+                  />
+                </TitleSection>
+                <FlexRow>
+                  <FlexColumn>
+                    <Title
+                      color={COLORS.orange}
+                      size={1.4}
+                    >
+                      Te quedan
+                    </Title>
+                    <Title
+                      size={1.2}
+                    >
+                      { user.days_remaining } días
+                    </Title>
+                  </FlexColumn>
+                  <FlexColumn>
+                    <Title
+                      color={COLORS.orange}
+                      size={1.4}
+                    >
+                      Pagado
+                    </Title>
+                    <Title
+                      size={1.2}
+                    >
+                      S/. { plan?.price }
+                    </Title>
+                  </FlexColumn>
+                </FlexRow>
+                </>
+
+              : <>
+                  <Title>
+                    Contrata un Plan ahora!
+                  </Title>
+                  <Text>
+                    Y disfruta de nuestros beneficios!
+                  </Text>
+                  <Button
+                    onClick={() => navigate("/choose-plan")}
+                    Icon={GiBiceps}
+                    filled
+                  >
+                    Obtener un plan
+                  </Button>
+                </>
+            }
+            
+          </Plan>
+      }
     </Container>
   );
 }
