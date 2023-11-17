@@ -10,20 +10,21 @@ import MrGymGo from "./pages/Client/MrGymGo";
 import MainGymPage from "./components/GymPage/main";
 import generateRoutes from "./helpers/generateRoutes";
 import Profile from "./pages/Client/Profile";
+import Loader from "./components/Loader";
 
 function App() {
   const { user, isLoading } = useAuth();
 
   return (
     isLoading
-    ? "Cargando..."
+    ? <Loader />
     : 
       <>
         <Navbar />
         {
           <Routes>
             <Route index path="/" element={user && user.user_type === "client" ? <Navigate to="/mr-gym-go" /> : <Home />}/>
-            <Route path="/planes" element={<PlansPage />} />
+            <Route path="/planes" element={!user || !user.plan[0] ? <PlansPage /> : <Navigate to="/mr-gym-go" />} />
             <Route path="/ubicanos" element={<Ubication />} />
             <Route path="/mr-gym-go" element={<MrGymGo />} />
             <Route path="/mr-gym-go/cardio-ritmo" element={<MainGymPage search="cardio" />} />
