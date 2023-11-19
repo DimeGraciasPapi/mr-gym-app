@@ -60,9 +60,13 @@ function Navbar() {
                 Inicio
               </NavItem>
           }
-          <NavItem Icon={BsFillCalendarFill} to="/planes">
-            Nuestros planes
-          </NavItem>
+          {
+            user && user.plan[0]
+            ? ""
+            : <NavItem Icon={BsFillCalendarFill} to="/planes">
+                Nuestros planes
+              </NavItem>
+          }
           <NavItem Icon={FaMapMarkerAlt} to="/ubicanos">
             Ubícanos
           </NavItem>
