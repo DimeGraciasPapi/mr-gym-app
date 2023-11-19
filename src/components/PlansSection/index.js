@@ -4,14 +4,26 @@ import { useData } from "../../context/data";
 import Button from "../Button";
 import { Container, Plan, Section, Text, Title } from "./styles";
 import { GiBiceps } from "react-icons/gi";
+import getLinkToPay from "../../helpers/preference";
+import { useState } from "react";
+import { Spinner } from "reactstrap";
 
 function PlansSection() {
-  const { plans, setModal } = useData();
+  const [ isLoading, setIsLoading ] = useState(false);
+  const { plans, setModal, setChosenPlan } = useData();
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    if(user) return navigate("/choose-plan");
+  const handleClick = async (plan) => {
+    if(user) {
+      setIsLoading(true);
+      const link = await getLinkToPay(plan);
+      setChosenPlan({ ...plan, link });
+      setIsLoading(false);
+      navigate("/choose-plan");
+      window.scroll(0, 0);
+      return;
+    }
 
     setModal(modal => ({action: "register", isOpen: !modal.isOpen}))
   }
@@ -46,7 +58,8 @@ function PlansSection() {
               <p> {plan.description} </p>
               <p> S/. {plan.price} </p>
               <p> Mantenimiento: S/. 00.00 </p>
-              <p> Sin multa por cancelamiento </p>
+              <p> Rutinas personalizadas </p>
+              <p> Máquinas de alto rendimiento </p>
               <p> Suscripción de {plan.remaining / 30} meses</p>
               {
                 plan.benefits.split(",").map((benefit, index) => (
@@ -54,19 +67,27 @@ function PlansSection() {
                 ))
               } 
               <p> Acceso a todas las áreas del gimnasio </p>
-              <p> Sin cargo por cancelación </p>
               <p><b> Servicios </b></p>
               <ul>
                 <li><p> Duchas </p></li>
                 <li><p> Vestidores </p></li>
+                <li><p> Equipos prestados </p></li>
               </ul>
               <Button
-                onClick={() => handleClick()}
+                onClick={() => handleClick(plan)}
                 Icon={GiBiceps}
                 filled={plan.name !== "Black"}
                 style={{alignSelf: "center"}}
               >
-                Obtener plan
+                {
+                  isLoading
+                  ? <>
+                      Cargando...
+                      {" "}
+                      <Spinner size="sm" />
+                    </>
+                  : "Obtener plan"
+                }
               </Button>
             </Plan>
           ))
