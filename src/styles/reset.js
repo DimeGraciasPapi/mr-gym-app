@@ -13,7 +13,7 @@ export const RESET = css`
 
   a {
     text-decoration: none;
-    color: ${COLORS.gray};
+    color: inherit;
   }
 
   p {
