@@ -9,9 +9,21 @@ import { BiSolidJoystick } from "react-icons/bi";
 import Icon from "./iconMarker";
 import Button from "../../../components/Button";
 import { useData } from "../../../context/data";
+import { useAuth } from "../../../context/auth";
+import { useNavigate } from "react-router-dom";
 
 function Ubication() {
   const { setModal } = useData();
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    window.scroll(0, 0);
+
+    if(user) return navigate("/mr-gym-go");
+
+    setModal((modal) => ({action: "register", isOpen: !modal.isOpen}))
+  }
 
   return (
     <>
@@ -100,14 +112,20 @@ function Ubication() {
             <Button
               style={{alignSelf: "center"}}
               filled
-              onClick={() => setModal((modal) => ({action: "register", isOpen: !modal.isOpen}))}
+              onClick={() => handleClick()}
             >
-              Registrarme
+              {
+                user
+                ? "Entrenar"
+                : "Registrarme"
+              }
             </Button>
           </Card>
         </Section>
       </Container>
-      <PlansSection />
+      {
+        !user?.plan[0] && <PlansSection />
+      }
     </>
   );
 }

@@ -17,12 +17,22 @@ import { GiBiceps } from "react-icons/gi";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../../context/data";
 import { COLORS } from "../../../styles";
+import getLinkToPay from "../../../helpers/preference";
 
 function Profile() {
   const [isLoading, setIsLoading] = useState(false);
+  const [planLoading, setPlanLoading] = useState(false);
   const { user, setError, error, setUser } = useAuth();
-  const { plans } = useData();
+  const { plans, setChosenPlan } = useData();
   const navigate = useNavigate();
+
+  const handleClick = async () => {
+    setPlanLoading(true);
+    const link = await getLinkToPay(plans[0], user);
+    setChosenPlan({ ...plans[0], link });
+    setPlanLoading(false);
+    navigate("/choose-plan");
+  }
 
   const handleSubmit = async (values) => {
     setIsLoading(true);
@@ -227,11 +237,19 @@ function Profile() {
                     Y disfruta de nuestros beneficios!
                   </Text>
                   <Button
-                    onClick={() => navigate("/choose-plan")}
+                    onClick={() => handleClick()}
                     Icon={GiBiceps}
                     filled
                   >
-                    Obtener un plan
+                    {
+                      planLoading
+                      ? <>
+                          Cargando...
+                          {" "}
+                          <Spinner size="sm" />
+                        </>
+                      : "Obtener un plan"
+                    }
                   </Button>
                 </>
             }

@@ -1,10 +1,12 @@
 import { useState, createContext, useContext, useEffect } from "react";
 import { get } from "../services";
+import getLinkToPay from "../helpers/preference";
 
 const DataContext = createContext();
 
 function DataProvider({ children }) {
   const [modal, setModal] = useState({ action: "login", isOpen: false });
+  const [chosenPlan, setChosenPlan] = useState({});
   const [plans, setPlans] = useState([]);
   const [registers, setRegisters] = useState([]);
   const [isGetting, setIsGetting] = useState(true); 
@@ -16,6 +18,12 @@ function DataProvider({ children }) {
         // get plans
         const plans = await get("plans");
         setPlans(plans);
+        const user = await get("users/info/profile");
+        const plan = plans[0];
+
+        const link = !user.plan[0] ? await getLinkToPay(plan, user) : "";
+
+        setChosenPlan({ ...plan, link });
 
         // get registers
         const registers = await get("registers");
@@ -42,6 +50,8 @@ function DataProvider({ children }) {
         isGetting,
         error,
         modal,
+        chosenPlan,
+        setChosenPlan,
         setModal,
         setError,
         setIsGetting

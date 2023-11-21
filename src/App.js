@@ -11,6 +11,9 @@ import MainGymPage from "./components/GymPage/main";
 import generateRoutes from "./helpers/generateRoutes";
 import Profile from "./pages/Client/Profile";
 import Loader from "./components/Loader";
+import ChoosePlan from "./pages/Client/ChoosePlan";
+import Success from "./pages/Client/ChoosePlan/Response/success";
+import Failure from "./pages/Client/ChoosePlan/Response/failure";
 
 function App() {
   const { user, isLoading } = useAuth();
@@ -23,13 +26,21 @@ function App() {
         <Navbar />
         {
           <Routes>
-            <Route index path="/" element={user && user.user_type === "client" ? <Navigate to="/mr-gym-go" /> : <Home />}/>
+            <Route index path="/" element={user && user.user_type === "client" ? <Navigate to="/mr-gym-go" /> : <Home />} />
             <Route path="/planes" element={!user || !user.plan[0] ? <PlansPage /> : <Navigate to="/mr-gym-go" />} />
             <Route path="/ubicanos" element={<Ubication />} />
             <Route path="/mr-gym-go" element={<MrGymGo />} />
             <Route path="/mr-gym-go/cardio-ritmo" element={<MainGymPage search="cardio" />} />
             <Route path="/mr-gym-go/cuerpo-mente" element={<MainGymPage search="cuerpo" />} />
             <Route path="/mr-gym-go/fuerza-resistencia" element={<MainGymPage search="fuerza" />} />
+            {
+              user && !user.plan[0]
+              && <>
+                  <Route path="/choose-plan" element={<ChoosePlan />} />
+                  <Route path="/choose-plan/failure" element={<Failure />} />
+                </>
+            }
+            <Route path="/choose-plan/success" element={<Success />} />
             { generateRoutes("cardio") }
             { generateRoutes("fuerza") }
             { generateRoutes("cuerpo") }
