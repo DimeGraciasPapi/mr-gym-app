@@ -28,7 +28,7 @@ function Profile() {
 
   const handleClick = async () => {
     setPlanLoading(true);
-    const link = await getLinkToPay(plans[0]);
+    const link = await getLinkToPay(plans[0], user);
     setChosenPlan({ ...plans[0], link });
     setPlanLoading(false);
     navigate("/choose-plan");

@@ -1,5 +1,5 @@
 import { useState, createContext, useContext, useEffect } from "react";
-import { get, post } from "../services";
+import { get } from "../services";
 import getLinkToPay from "../helpers/preference";
 
 const DataContext = createContext();
@@ -18,9 +18,10 @@ function DataProvider({ children }) {
         // get plans
         const plans = await get("plans");
         setPlans(plans);
+        const user = await get("users/info/profile");
         const plan = plans[0];
 
-        const link = await getLinkToPay(plan);
+        const link = !user.plan[0] ? await getLinkToPay(plan, user) : "";
 
         setChosenPlan({ ...plan, link });
 

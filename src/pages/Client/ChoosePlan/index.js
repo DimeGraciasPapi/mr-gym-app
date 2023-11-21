@@ -6,14 +6,16 @@ import { GiBiceps } from "react-icons/gi";
 import { useState } from "react";
 import getLinkToPay from "../../../helpers/preference";
 import { Spinner } from "reactstrap";
+import { useAuth } from "../../../context/auth";
 
 function ChoosePlan() {
   const [isLoading, setIsLoading] = useState(false);
   const { chosenPlan, plans, setChosenPlan } = useData();
+  const { user } = useAuth();
 
   const handleClick = async (plan) => {
     setIsLoading(true);
-    const link = await getLinkToPay(plan);
+    const link = await getLinkToPay(plan, user);
     setChosenPlan({ ...plan, link });
     setIsLoading(false);
   }
