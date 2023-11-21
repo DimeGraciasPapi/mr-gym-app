@@ -17,7 +17,7 @@ function PlansSection() {
   const handleClick = async (plan) => {
     if(user) {
       setIsLoading(true);
-      const link = await getLinkToPay(plan);
+      const link = await getLinkToPay(plan, user);
       setChosenPlan({ ...plan, link });
       setIsLoading(false);
       navigate("/choose-plan");
