@@ -34,8 +34,12 @@ function AuthProvider({ children }) {
       const response = await session.login(credentials);
       setUser(response);
 
-      if(location.pathname === "/") navigate("/mr-gym-go");
-
+      if(response.user_type === "admin") {
+        navigate("/")
+      } else if(location.pathname === "/") {
+        navigate("/mr-gym-go");
+      }
+      
       return response;
     }catch(e) {
       console.error(e);
