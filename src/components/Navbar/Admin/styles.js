@@ -12,6 +12,7 @@ export const Container = styled.div`
   top: 0;
   position: sticky;
   padding: 1rem 2rem;
+  z-index: 40;
 
   .menu {
     cursor: pointer;
