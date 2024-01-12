@@ -14,7 +14,7 @@ export const Container = styled.aside`
   border-radius: 0 0.5rem 0 0;
   transition: .2s ease-in-out;
   position: sticky;
-  top: 100px;
+  top: 84px;
   z-index: 49;
 
   @media screen and (max-width: 800px) {
