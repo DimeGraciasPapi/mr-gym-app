@@ -18,9 +18,21 @@ export const Section = styled.section`
   height: 100%;
   background-color: ${COLORS.orange};
   border-radius: 0.5rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 2rem;
+  padding: 1rem;
 
   @media screen and (max-width: 800px) {
     min-height: 88.3vh;
     border-radius: 0;
   }
+`;
+
+export const Title = styled.h1`
+  font-size: 2rem;
+  font-weight: 700;
+  color: ${COLORS.white};
 `;
