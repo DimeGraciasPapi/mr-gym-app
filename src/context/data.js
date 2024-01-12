@@ -9,7 +9,11 @@ function DataProvider({ children }) {
   const [chosenPlan, setChosenPlan] = useState({});
   const [plans, setPlans] = useState([]);
   const [registers, setRegisters] = useState([]);
-  const [isGetting, setIsGetting] = useState(true); 
+  const [isGetting, setIsGetting] = useState(true);
+  const [members, setMembers] = useState([]);
+  const [backup, setBackup] = useState({
+    members: []
+  });
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -25,10 +29,6 @@ function DataProvider({ children }) {
 
         setChosenPlan({ ...plan, link });
 
-        // get registers
-        const registers = await get("registers");
-        setRegisters(registers);
-
         setIsGetting(false);
       }catch(e) {
         console.error(e);
@@ -40,7 +40,10 @@ function DataProvider({ children }) {
     fetch();
   }, []);
 
-  // pending get one - update - destroy for registers and plans
+  const searchMember = (param) => {
+    const result = backup.members.filter((member) => (`${member.name} ${member.last_name}`).toLowerCase().includes(param.toLowerCase()));
+    setMembers(result);
+  }
 
   return (
     <DataContext.Provider
@@ -51,10 +54,16 @@ function DataProvider({ children }) {
         error,
         modal,
         chosenPlan,
+        members,
+        backup,
+        setBackup,
+        setMembers,
         setChosenPlan,
         setModal,
         setError,
-        setIsGetting
+        setIsGetting,
+        setRegisters,
+        searchMember
       }}
     >
       { children }
