@@ -20,8 +20,8 @@ export const Section = styled.section`
   border-radius: 0.5rem 0 0 0;
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: start;
+  align-items: ${({ isLoading }) => isLoading ? "center" : "start"};
+  justify-content: ${({ isLoading }) => isLoading ? "center" : "start"};
   gap: 2rem;
   padding: 1rem;
 
