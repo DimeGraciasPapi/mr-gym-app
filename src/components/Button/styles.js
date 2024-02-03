@@ -9,7 +9,7 @@ export const Container = styled.button`
   gap: 0.5rem;
   font-size: 1rem;
   font-weight: 500;
-  background-color: ${({ filled, color }) => filled ? color === "secondary" ? COLORS.black: COLORS.orange : "transparent"};
+  background-color: ${({ filled, color }) => filled ? (color === "secondary" ? COLORS.black : COLORS.orange) : "transparent"};
   color: ${COLORS.white};
   border: 1px solid ${({ filled }) => filled ? COLORS.orange : COLORS.white};
   border-radius: 12px;

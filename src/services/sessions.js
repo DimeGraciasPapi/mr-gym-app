@@ -8,8 +8,9 @@ export const login = async (body) => {
   return user;
 }
 
-export const signup = async (body) => {
+export const signup = async (body, userLogIn) => {
   const { token, ...user } = await apiFetch("auth/signup", { body });
+  if(userLogIn?.user_type === "admin") return user;
 
   localStorage.setItem(TOKEN_KEY, token);
   return user;

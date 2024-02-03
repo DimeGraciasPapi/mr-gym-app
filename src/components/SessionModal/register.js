@@ -70,7 +70,7 @@ function Register({
         error={errors.email}
         touched={touched.email}
       />
-      <FormInput 
+      <FormInput
         Icon={HiMiniIdentification}
         id="dni"
         placeholder="DNI"
