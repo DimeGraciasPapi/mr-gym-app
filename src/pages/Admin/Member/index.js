@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useData } from "../../../context/data";
 import { Alert, Button as Btn, Modal, ModalBody, ModalHeader, Spinner } from "reactstrap";
 import { Title } from "../../../styles/layout";
@@ -15,19 +15,23 @@ import { SiGooglestreetview } from "react-icons/si";
 import Select from "../../../components/FormInput/select";
 import Button from "../../../components/Button";
 import { RxUpdate } from "react-icons/rx";
-import { update } from "../../../services";
+import { destroy, update } from "../../../services";
+import { HiMiniBackspace } from "react-icons/hi2";
 
 function Member() {
-  const [isActive, setIsActive] = useState(false);
-  const [editModal, setEditModal] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [ isActive, setIsActive ] = useState(false);
+  const [ editModal, setEditModal ] = useState(false);
+  const [ isLoading, setIsLoading ] = useState(false);
+  const [ deleteModal, setDeleteModal ] = useState(false);
   const { id } = useParams();
-  const { members, isGetting, plans, error, setError, updateMember } = useData();
+  const { members, isGetting, setIsGetting, plans, error, setError, updateMember, deleteMember } = useData();
   const member = members?.find((member) => member.id === id);
   const plan = plans?.find((plan) => plan.id === member?.plan[0]);
   const options = plans.map((plan) => plan.name);
+  const navigate = useNavigate();
 
   const editToggle = () => setEditModal(!editModal);
+  const deleteToggle = () => setDeleteModal(!deleteModal);
 
   const initialValues = {
     phone: member?.phone,
@@ -49,10 +53,29 @@ function Member() {
       editToggle();
 
       setIsLoading(false);
+      setError(null);
     }catch(e) {
       setError(e.message);
 
       setIsLoading(false);
+    }
+  }
+
+  const handleDelete = async () => {
+    setIsGetting(true);
+
+    try {
+      navigate("/miembros");
+      
+      await destroy("users", member.id);
+      await deleteMember(member.id);
+      setIsGetting(false);
+      setError(null);
+    }catch(e) {
+      console.error(e);
+
+      window.history.back();
+      setIsGetting(false);
     }
   }
 
@@ -118,6 +141,7 @@ function Member() {
             </Btn>
             <Btn
               color="danger"
+              onClick={deleteToggle}
             >
               <FlexRow gap={0.3}>
                 <FaRegTrashAlt 
@@ -129,6 +153,7 @@ function Member() {
             </Btn>
           </Control>
         </Section>
+        {/* update member */}
         <Modal 
           isOpen={editModal}
           toggle={editToggle}
@@ -221,6 +246,46 @@ function Member() {
                 </Form>
               )}
             </Formik>
+          </ModalBody>
+        </Modal>
+        {/* delete member */}
+        <Modal
+          isOpen={deleteModal}
+          toggle={deleteToggle}
+          centered
+          size="sm"
+        >
+          <ModalHeader toggle={deleteToggle}>
+            <Text
+              toDown
+              size={18}
+              color={COLORS.black}
+            >
+              ¿Esta seguro de eliminar?
+            </Text>
+          </ModalHeader>
+          <ModalBody>
+            <FlexRow>
+              <Button
+                Icon={HiMiniBackspace}
+                onClick={deleteToggle}
+                filled
+              >
+                Cancelar
+              </Button>
+              <Btn
+                color="danger"
+                onClick={handleDelete}
+              >
+                <FlexRow gap={0.3}>
+                  <FaRegTrashAlt 
+                    style={{transform: "translateY(-1px)"}}
+                    size={18}
+                  />
+                  Eliminar
+                </FlexRow>
+              </Btn>
+            </FlexRow>
           </ModalBody>
         </Modal>
       </>

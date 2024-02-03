@@ -78,6 +78,7 @@ function Members() {
         toggle();
       }
       setIsLoading(false);
+      setError(null);
     }catch(e) {
       console.error(e);
       setError(e.message);
