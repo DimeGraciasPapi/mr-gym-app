@@ -7,6 +7,7 @@ import Members from "./pages/Admin/Members";
 import { useData } from "./context/data";
 import { get } from "./services";
 import Member from "./pages/Admin/Member";
+import Attendance from "./pages/Admin/Attendance";
 
 function Admin() {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,6 +52,7 @@ function Admin() {
         <Routes>
           <Route path="/miembros" element={<Members />} />
           <Route path="/miembros/:id" element={<Member />} />
+          <Route path="/asistencia" element={<Attendance />} />
         </Routes>
       </Section>
     </Container>
