@@ -50,7 +50,13 @@ function DataProvider({ children }) {
     const index = membersToUpdate.indexOf(oldMember);
     membersToUpdate[index] = newMember;
     setMembers(membersToUpdate);
-    setBackup((prev) => ({...prev, membersToUpdate}));
+    setBackup((prev) => ({...prev, members: membersToUpdate}));
+  }
+
+  const deleteMember = (id) => {
+    const newMembers = members.filter((member) => member.id !== id);
+    setMembers(newMembers);
+    setBackup((prev) => ({...prev, members: newMembers}));
   }
 
   return (
@@ -72,7 +78,8 @@ function DataProvider({ children }) {
         setIsGetting,
         setRegisters,
         searchMember,
-        updateMember
+        updateMember,
+        deleteMember
       }}
     >
       { children }
