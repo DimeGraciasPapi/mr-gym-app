@@ -9,6 +9,11 @@ export const Section = styled.section`
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 2rem;
+
+  @media screen and (max-width: 1206px) {
+    width: 100%;
+    justify-content: center;
+  }
 `;
 
 export const Container = styled.div`
@@ -44,10 +49,15 @@ export const Text = styled.p`
 `;
 
 export const FlexRow = styled.div`
+  width: ${({ width }) => width || ""};
   display: flex;
   gap: ${({ gap }) => gap || 0.5}rem;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 450px) {
+    flex-wrap: ${({ wrap }) => wrap ? "wrap" : "no-wrap"};
+  }
 `;
 
 export const Control = styled.div`

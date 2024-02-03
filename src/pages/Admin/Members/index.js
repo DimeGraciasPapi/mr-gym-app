@@ -169,8 +169,7 @@ function Members() {
             isValid,
             handleChange,
             handleBlur,
-            handleSubmit,
-            resetForm
+            handleSubmit
           }) => (
             <FlexColumn>
               <FormTitle>Nuevo miembro</FormTitle>
