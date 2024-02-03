@@ -45,6 +45,14 @@ function DataProvider({ children }) {
     setMembers(result);
   }
 
+  const updateMember = (oldMember, newMember) => {
+    const membersToUpdate = members;
+    const index = membersToUpdate.indexOf(oldMember);
+    membersToUpdate[index] = newMember;
+    setMembers(membersToUpdate);
+    setBackup((prev) => ({...prev, membersToUpdate}));
+  }
+
   return (
     <DataContext.Provider
       value={{
@@ -63,7 +71,8 @@ function DataProvider({ children }) {
         setError,
         setIsGetting,
         setRegisters,
-        searchMember
+        searchMember,
+        updateMember
       }}
     >
       { children }
