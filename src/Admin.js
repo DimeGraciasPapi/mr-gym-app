@@ -6,10 +6,11 @@ import { Route, Routes } from "react-router-dom";
 import Members from "./pages/Admin/Members";
 import { useData } from "./context/data";
 import { get } from "./services";
+import Member from "./pages/Admin/Member";
 
 function Admin() {
   const [isOpen, setIsOpen] = useState(false);
-  const { setRegisters, setMembers, setIsGetting, setBackup } = useData();
+  const { setRegisters, setMembers, setIsGetting, setBackup, isGetting } = useData();
 
   useEffect(() => {
     const fetch = async () => {
@@ -46,9 +47,10 @@ function Admin() {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
       />
-      <Section>
+      <Section isLoading={isGetting}>
         <Routes>
           <Route path="/miembros" element={<Members />} />
+          <Route path="/miembros/:id" element={<Member />} />
         </Routes>
       </Section>
     </Container>
