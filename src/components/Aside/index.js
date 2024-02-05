@@ -44,6 +44,7 @@ function Aside({ isOpen, setIsOpen }) {
           Icon={RiCheckboxMultipleFill}
           to="/asistencia"
           name="Registro de asistencia"
+          isActive={pathname.includes("asistencia")}
         />
         <NavItem
           setIsOpen={setIsOpen}

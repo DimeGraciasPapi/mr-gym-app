@@ -9,10 +9,15 @@ export const Section = styled.section`
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 2rem;
+
+  @media screen and (max-width: 1206px) {
+    width: 100%;
+    justify-content: center;
+  }
 `;
 
 export const Container = styled.div`
-  width: 460px;
+  width: ${({ width }) => width || "460px"};
   border-radius: 1rem;
   padding: 1.5rem;
   background-image: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url(/assets/photo/cardio-1.jpeg);
@@ -25,6 +30,15 @@ export const Container = styled.div`
   justify-content: start;
   flex-wrap: wrap;
   gap: 0.5rem;
+  margin: ${({ margin }) => margin || ""};
+
+  @media screen and (max-width: 1290px) {
+    width: ${({ width }) => width ? "80%" : ""};
+  }
+
+  @media screen and (max-width: 922px) {
+    width: ${({ width }) => width ? "100%" : ""};
+  }
 `;
 
 export const CardTitle = styled.h3`
@@ -44,10 +58,15 @@ export const Text = styled.p`
 `;
 
 export const FlexRow = styled.div`
+  width: ${({ width }) => width || ""};
   display: flex;
   gap: ${({ gap }) => gap || 0.5}rem;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: 450px) {
+    flex-wrap: ${({ wrap }) => wrap ? "wrap" : "no-wrap"};
+  }
 `;
 
 export const Control = styled.div`

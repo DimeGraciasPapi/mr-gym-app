@@ -1,5 +1,5 @@
 import { useState, createContext, useContext, useEffect } from "react";
-import { get } from "../services";
+import { destroy, get } from "../services";
 import getLinkToPay from "../helpers/preference";
 
 const DataContext = createContext();
@@ -53,10 +53,26 @@ function DataProvider({ children }) {
     setBackup((prev) => ({...prev, members: membersToUpdate}));
   }
 
-  const deleteMember = (id) => {
+  const deleteMember = async (id) => {
     const newMembers = members.filter((member) => member.id !== id);
     setMembers(newMembers);
     setBackup((prev) => ({...prev, members: newMembers}));
+
+    // delete attendance
+    const toDelete = registers.filter((register) => register.user[0] === id);
+    toDelete.forEach(async (register) => {
+      await destroy("registers", register.id);
+    });
+
+    const newRegisters = registers.filter((register) => register.user[0] !== id);
+    setRegisters(newRegisters);
+  }
+
+  const updateRegister = (oldRegister, newRegister) => {
+    const registersToUpdate = registers;
+    const index = registersToUpdate.indexOf(oldRegister);
+    registersToUpdate[index] = newRegister;
+    setRegisters(registersToUpdate);
   }
 
   return (
@@ -79,7 +95,8 @@ function DataProvider({ children }) {
         setRegisters,
         searchMember,
         updateMember,
-        deleteMember
+        deleteMember,
+        updateRegister
       }}
     >
       { children }
