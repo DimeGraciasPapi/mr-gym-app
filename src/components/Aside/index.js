@@ -3,7 +3,6 @@ import { BackDrop, Container } from "./styles";
 import { FaHome, FaCalendarAlt } from "react-icons/fa";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { RiCheckboxMultipleFill } from "react-icons/ri";
-import { GiBiceps } from "react-icons/gi";
 import { useLocation } from "react-router-dom";
 
 function Aside({ isOpen, setIsOpen }) {
@@ -45,13 +44,6 @@ function Aside({ isOpen, setIsOpen }) {
           to="/asistencia"
           name="Registro de asistencia"
           isActive={pathname.includes("asistencia")}
-        />
-        <NavItem
-          setIsOpen={setIsOpen}
-          isOpen={isOpen}
-          Icon={GiBiceps}
-          to="/planes"
-          name="Planes"
         />
       </Container>
     </>
