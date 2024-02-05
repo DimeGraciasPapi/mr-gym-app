@@ -17,7 +17,7 @@ export const Section = styled.section`
 `;
 
 export const Container = styled.div`
-  width: 460px;
+  width: ${({ width }) => width || "460px"};
   border-radius: 1rem;
   padding: 1.5rem;
   background-image: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .6)), url(/assets/photo/cardio-1.jpeg);
@@ -30,6 +30,7 @@ export const Container = styled.div`
   justify-content: start;
   flex-wrap: wrap;
   gap: 0.5rem;
+  margin: ${({ margin }) => margin || ""};
 `;
 
 export const CardTitle = styled.h3`
