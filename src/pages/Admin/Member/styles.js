@@ -31,6 +31,14 @@ export const Container = styled.div`
   flex-wrap: wrap;
   gap: 0.5rem;
   margin: ${({ margin }) => margin || ""};
+
+  @media screen and (max-width: 1290px) {
+    width: ${({ width }) => width ? "80%" : ""};
+  }
+
+  @media screen and (max-width: 922px) {
+    width: ${({ width }) => width ? "100%" : ""};
+  }
 `;
 
 export const CardTitle = styled.h3`

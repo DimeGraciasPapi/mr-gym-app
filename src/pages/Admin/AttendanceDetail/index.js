@@ -5,7 +5,7 @@ import { Title } from "../../../styles/layout";
 import { Alert, Modal, Spinner } from "reactstrap";
 import capitalize from "../../../helpers/capitalize";
 import { CardTitle, Container, FlexRow, Text } from "../Member/styles";
-import { Form, FormTitle, Section } from "./styles";
+import { Divider, Form, FormTitle, Section } from "./styles";
 import Button from "../../../components/Button";
 import { IoBagAddSharp } from "react-icons/io5";
 import { Formik } from "formik";
@@ -13,10 +13,12 @@ import FormInput from "../../../components/FormInput";
 import { FaShoppingBasket } from "react-icons/fa";
 import { CgClose } from "react-icons/cg";
 import { update } from "../../../services";
+import { LuCheck } from "react-icons/lu";
 
 function AttendanceDetail() {
   const [ isLoading, setIsLoading ] = useState(false);
   const [ modal, setModal ] = useState(false);
+  const [ confirmModal, setConfirmModal ] = useState(false);
   const { registers, members, isGetting, error, setError, updateRegister } = useData();
   const { id } = useParams();
 
@@ -25,7 +27,7 @@ function AttendanceDetail() {
   const date = new Date(attendance.createdAt);
 
   const initialValues = {
-    takes: attendance.takes.join(", ") || ""
+    takes: attendance.takes?.join(", ") || ""
   }
 
   const handleSubmit = async (values) => {
@@ -47,7 +49,26 @@ function AttendanceDetail() {
     }
   }
 
+  const handleConfirm = async () => {
+    setIsLoading(true);
+
+    try {
+      const oldRegister = registers.find((register) => register.id === attendance.id);
+      const newRegister = await update("registers", { takes: [] }, attendance.id);
+      await updateRegister(oldRegister, newRegister);
+
+      setIsLoading(false);
+      confirmToggle();
+      setError(null);
+    }catch(e) {
+      setIsLoading(false);
+
+      console.error(e);
+    }
+  }
+
   const toggle = () => setModal(!modal);
+  const confirmToggle = () => setConfirmModal(!confirmModal);
 
   const validate = (values) => {
     const errors = {};
@@ -85,6 +106,7 @@ function AttendanceDetail() {
               &&  <Button
                     filled
                     color="secondary"
+                    onClick={confirmToggle}
                   >
                     ¿Las devolvió?
                   </Button>
@@ -168,6 +190,47 @@ function AttendanceDetail() {
               </Form>
             )}
           </Formik>
+        </Modal>
+        <Modal
+          toggle={confirmToggle}
+          isOpen={confirmModal}
+          centered
+        >
+          <Divider>
+            <CgClose 
+              className="icon"
+              size={22}
+              onClick={confirmToggle}
+            />
+            <FormTitle>
+              ¿Desea confirmar?
+            </FormTitle>
+            <Section>
+              <Button
+                filled
+                color="secondary"
+                Icon={CgClose}
+                onClick={confirmToggle}
+              >
+                Cancelar
+              </Button>
+              <Button
+                filled
+                Icon={LuCheck}
+                onClick={handleConfirm}
+              >
+                {
+                  isLoading
+                  ? <>
+                      <Spinner size="sm" />
+                      {" "}
+                      Confirmando...
+                    </>
+                  : "Confirmar"
+                }
+              </Button>
+            </Section>
+          </Divider>
         </Modal>
       </>
   );
