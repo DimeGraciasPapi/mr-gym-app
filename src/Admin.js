@@ -10,6 +10,7 @@ import Member from "./pages/Admin/Member";
 import Attendance from "./pages/Admin/Attendance";
 import AttendanceDetail from "./pages/Admin/AttendanceDetail";
 import Profile from "./pages/Admin/Profile";
+import Home from "./pages/Admin/Home";
 
 function Admin() {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,6 +53,7 @@ function Admin() {
       />
       <Section isLoading={isGetting}>
         <Routes>
+          <Route index path="/" element={<Home />} />
           <Route path="/miembros" element={<Members />} />
           <Route path="/miembros/:id" element={<Member />} />
           <Route path="/asistencia" element={<Attendance />} />
