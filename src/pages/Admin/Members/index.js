@@ -64,9 +64,9 @@ function Members() {
     try {
       const data = {
         ...values,
-        dni: personInfo.dni,
-        name: personInfo.name,
-        last_name: personInfo.last_name
+        dni: personInfo.dni || values.dni,
+        name: personInfo.name || values.name,
+        last_name: personInfo.last_name || values.last_name
       }
 
       const newUser = await signup(data, user);
