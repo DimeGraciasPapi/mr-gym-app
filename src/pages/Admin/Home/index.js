@@ -66,9 +66,9 @@ function Home() {
 
   let collected = 0;
   members.forEach((member) => {
-    const plan = plans.find((plan) => plan.id === member.plan[0]);
+    const plan = plans?.find((plan) => plan.id === member?.plan[0]);
 
-    collected += plan.price;
+    collected += plan?.price;
   });
 
   return (
