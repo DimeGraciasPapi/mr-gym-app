@@ -103,7 +103,7 @@ function Client() {
         )}
       </div>
       <div className='buttonWhatssap'>
-        <a href='https://wa.link/zugsbz' >
+        <a href='https://wa.link/zugsbz' target="_blank" rel="noreferrer">
          <img className='whatsapp' src='https://www.semana.com/resizer/SffiNLB5Y6ldffMtqUwEEvn0TLQ=/1280x1280/smart/filters:format(jpg):quality(80)/cloudfront-us-east-1.images.arcpublishing.com/semana/RVOLOBEE6ZG7ZPFZCKAH7M262Q.jpg' alt="Logo de WhatsApp"></img>
         </a>
       </div>
