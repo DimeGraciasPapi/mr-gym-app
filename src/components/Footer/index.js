@@ -25,17 +25,17 @@ function Footer() {
             ¿Quiénes somos?
           </Link>
           <Link
-            href="#"
+            href="https://mr-gym.vercel.app/"
           > 
             Habla con nosotros
           </Link>
           <Link
-            href="#"
+            href="https://wa.link/zugsbz"
           > 
             FAQ
           </Link>
           <Link
-            href="#"
+            href="https://wa.link/zugsbz"
           > 
             Política de datos personales
           </Link>
@@ -49,7 +49,7 @@ function Footer() {
             Conoce nuestros planes
           </Link>
           <Link 
-            href="#"
+            href="https://mr-gym.vercel.app/planes"
           >
             Documentos
           </Link>
@@ -58,28 +58,28 @@ function Footer() {
           <Link><b> Síguenos </b></Link>
           <Link
             target="_blank"
-            href="about:blank"
+            href="https://www.facebook.com/mistergymhuancayo"
           >
             <BsFacebook/>
             Facebook
           </Link>
           <Link
             target="_blank"
-            href="about:blank"
+            href="https://www.facebook.com/mistergymhuancayo"
           >
             <AiOutlineInstagram/>
             Instagram
           </Link>
           <Link
             target="_blank"
-            href="about:blank"
+            href="https://www.facebook.com/mistergymhuancayo"
           >
             <FaTiktok/>
             Tik Tok
           </Link>
           <Link
             target="_blank"
-            href="about:blank"
+            href="https://www.facebook.com/mistergymhuancayo"
           >
             <BsLinkedin/>
             Linkedln

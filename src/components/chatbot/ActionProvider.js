@@ -87,14 +87,6 @@ const ActionProvider = ({ createChatBotMessage, setState, children, addUserMessa
   const showUserMessage = (message)=>{
     addUserMessage(message);
   }
-
-
-  // const greetWithName = (name) => {
-  //   const message = createChatBotMessage(`Hola ${name}! ¿En qué puedo ayudarte hoy?`, {
-  //     widget: "startSlow"
-  //   });
-  //   updateState(message);
-  // };
   const finalResult = (option) =>{
     const message = createChatBotMessage("final")
     updateState(message);
@@ -113,7 +105,6 @@ const ActionProvider = ({ createChatBotMessage, setState, children, addUserMessa
       {React.Children.map(children, (child) => {
         return React.cloneElement(child, {
           actions: {
-            // greetWithName,
             initialAction,
             afterNameMessage,
             finalResult,

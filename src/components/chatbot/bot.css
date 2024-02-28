@@ -79,3 +79,37 @@
     -moz-transition: ease-out 0.4s;
     transition: ease-out 0.4s;
   }
+
+    /* whatsapp */
+
+    .buttonWhatssap {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 999;
+    }
+    
+    .buttonWhatssap a {
+      display: flex;
+      align-items: center;
+    }
+    
+    .buttonWhatssap .whatsapp {
+      width: 40px; /* Tamaño de la imagen del logo */
+      height: 40px; /* Ajusta la altura automáticamente */
+      margin-right: 10px; /* Espacio entre la imagen y el botón */
+    }
+    
+    .buttonWhatssap a img {
+      border-radius: 50%; /* Para redondear la imagen si es necesario */
+    }
+    
+    .buttonWhatssap a button {
+      background-color: green; /* Color de fondo del botón */
+      color: white; /* Color del texto del botón */
+      border: none;
+      padding: 10px 20px; /* Espacio interno del botón */
+      border-radius: 5px; /* Bordes redondeados del botón */
+      cursor: pointer;
+    }
+    

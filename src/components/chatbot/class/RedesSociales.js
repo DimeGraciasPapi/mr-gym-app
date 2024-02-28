@@ -2,7 +2,7 @@ import React from "react";
 
 function redesSociales(props){
     const whatssap = ()=>{
-        window.open('https://wa.link/qmaaay')
+        window.open('https://wa.link/zugsbz')
     }
     const facebook = () =>{
         window.open('https://www.facebook.com/mistergymhuancayo')
